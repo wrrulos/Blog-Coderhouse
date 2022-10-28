@@ -1,0 +1,26 @@
+{% extends 'user_actions/base_main_user_screen.html' %}
+
+{% block titulo %}
+    Bloggerhouse | Users Posts
+{% endblock %}
+
+{% block contenido %}
+
+<h1 style="text-align: center;">Mis Posts</h1>
+<div class="d-flex" style="margin-top:5rem; margin-left:7rem">
+    {% for post in posts %}
+
+    <div class="card" style="width: 22rem; margin-right: 2%; border: 2px solid black;">        
+        <div class="card-body">
+            <h5 class="card-title">Título: {{post.topic}}</h5>            
+            <p class="card-text">Cantidad de likes: {{post.likes}}</p>
+            <p class="card-text">Fecha de creación: {{post.dt_creation}}</p>
+            <a href="/Gestion_usuarios/post-detail/{{post.id}}/{{post.email_autor}}" class="btn btn-primary" style = "width: 48%;">Editar</a>
+            <a href="/Gestion_usuarios/post-delete-view/{{post.id}}/{{post.email_autor}}" class="btn btn-danger" style = "width: 48%;">Eliminar</a>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

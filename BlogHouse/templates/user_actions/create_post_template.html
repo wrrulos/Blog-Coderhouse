@@ -1,0 +1,65 @@
+{% extends 'user_actions/base_main_user_screen.html' %}
+
+{% block titulo %}
+    Bloggerhouse | New Post
+{% endblock %}
+
+{% block contenido %}
+
+{% if user_loged %}
+
+    {% if post %}
+    <!--Si existe el post es que el template esta siendo llamado desde el botón editar-->
+    <div class = "form">
+      <form action="/create-post-process/" method="POST">
+        {% csrf_token %}
+          <h2 class="titulo-form">{{post.topic}}</h2>
+          <hr>
+          <div class="mb-3">                
+              <input type="hidden" class="form-control" id="exampleInputEmail1" value = {{user_loged}} aria-describedby="emailHelp" name="email">                
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Tema:</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name = "topic" value = {{post.topic}}>              
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Contenido</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name = "content">{{post.content}}</textarea>
+          </div>            
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+
+    </div>
+    {% else %}    
+    <div class = "form">
+        <form action="/create-post-process/" method="POST">
+          {% csrf_token %}
+            <h2 class="titulo-form">¡Nuevo Post!</h2>
+            <hr>
+            <div class="mb-3">                
+                <input type="hidden" class="form-control" id="exampleInputEmail1" value = {{user_loged}} aria-describedby="emailHelp" name="email">                
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Tema:</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" name = "topic" aria-describedby="emailHelp">              
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Contenido</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name = "content"></textarea>
+            </div>            
+            <button type="submit" class="btn btn-primary">¡Post!</button>
+          </form>
+
+    </div>
+    {%endif%}
+
+
+
+
+{% else %}
+
+    <h2>Ha ocurrido un error</h2>
+
+{% endif %}
+
+{% endblock %}

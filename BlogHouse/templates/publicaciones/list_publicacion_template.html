@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Bloggerhouse
+{% endblock %}
+
+{% block contenido %}
+    <div><!--Open #1-->
+     <div style="float:left; width:23%; height:20px;"><!--Open #1.a-->
+        
+     </div><!--Close #1.a-->
+     {% if publicaciones %}          
+     <div style = "float:left; width: 50%; margin: 2%;"><!--Open #1.b-->        
+     {% for publicacion in publicaciones %}
+        <div class="card mb-3 post-card" style="width: 100%;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <!--<img src="{{publicacion.main_image.url}}" class="img-fluid rounded-start" alt="...">-->
+                <img src="{{publicacion.main_image.url}}" class="post-img img-fluid " alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{publicacion.title}}</h5>
+                  <p class="card-text">por {{publicacion.user}}</p>                  
+                  <p class="card-text"><small class="text-muted">Ult. modificación {{publicacion.dt_update}}</small></p>
+                  <p class="card-text"><a href="/posts/detail-post/{{publicacion.id}}/" class="btn btn-primary">¡Ver más!</a></p>                  
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+     {% else %}
+          <h2>Aún no hay publicaciones</h2>
+     {% endif %}
+    </div><!--Close #1.b-->
+    <div style="float:left; width:23%; height:20px;"><!--Open #1.c-->
+
+    </div><!--Close #1.c-->
+    </div><!--Close #1-->
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Bloggerhouse | Personal Data
+{% endblock %}
+
+{% block contenido %}
+
+{% if user_email %}
+
+<!--Datos Personales del usuario-->
+
+<form action="/create-person-view/" method="post">
+    {% csrf_token %}
+    <div class = "row">
+    <div class="column mb-3" >      
+      <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value = {{user_email}} name="email">      
+    </div>
+    </div>
+    <!--Fila 1-->
+    <div class = "row">
+        <div class=" column mb-3">
+            <label for="exampleInputPassword1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" name = "name">
+        </div>
+        <div class=" column mb-3">
+            <label for="exampleInputPassword1" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" name = "surname">
+        </div>
+    </div>
+    
+    <!--Fila 2-->
+    <div class = "row">
+        <div class=" column mb-3">
+            <label for="exampleInputPassword1" class="form-label">Nro. Documento</label>
+            <input type="number" class="form-control" id="exampleInputPassword1" name = "id_number">
+        </div>
+        <div class=" column mb-3">
+            <label for="exampleInputPassword1" class="form-label">Fecha de cumpleaños</label>
+            <input type="date" class="form-control" id="exampleInputPassword1" name = "birthday">
+        </div>
+    </div>
+
+    <!--Fila 3-->
+    <div class = "row">
+        <div class=" column mb-3">
+            <label for="exampleInputPassword1" class="form-label">Pais</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" name = "country">
+        </div>
+        <div class=" column mb-3">
+            <label for="exampleInputPassword1" class="form-label">Provincia</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" name = "state">
+        </div>
+    </div>
+
+    <!--Fila 4-->
+    <div class = "row">
+        <div class=" column mb-3">
+            <label for="exampleInputPassword1" class="form-label">Ciudad</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" name = "city">
+        </div>
+        <div class=" column mb-3">
+            <label for="exampleInputPassword1" class="form-label">Calle</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" name = "street">
+        </div>
+    </div>
+    <!--Fila 5-->
+    <div class = "row">    
+    <div class=" column mb-3">
+        <label for="exampleInputPassword1" class="form-label">Número</label>
+        <input type="number" class="form-control" id="exampleInputPassword1" name = "number">
+    </div>
+    </div>
+    <div class="columnk">
+        <button type="submit" class="column btn btn-primary" style="margin-left:10px; background-color: green;">Guardar</button>
+    </div>
+    
+  </form>
+
+{% endif %}
+
+{% if new_person %}
+
+  <h3>La persona {{new_person.email}} ha sido creada correctamente</h3>
+
+{% endif %}
+
+{% if message %}
+
+  <h3>Hubo un error al crear la persona</h3>
+
+{% endif %}
+
+{% endblock %}

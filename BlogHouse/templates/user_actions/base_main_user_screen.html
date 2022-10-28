@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block titulo %}
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <style>
+        .column{
+            width: 45%;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .row{
+            float: left;
+            width: 100%;
+        }
+
+        .login-form{
+            width: 20%;
+            margin: 20px;                        
+        }
+
+        .form{
+            width:50%;
+            margin: 25px 25px 25px 25px;
+            padding: 3%;
+            border: 1px solid black;
+            border-radius: 25px;
+        }
+        .titulo-form{
+            text-align: center;
+            
+        }
+        .img-logo{
+            margin-right: 2%;
+        }
+    </style>
+        
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar " style="background: black;">        
+        <a class="navbar-brand" href="/">Inicio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                                     
+            </ul>
+            <!--Buscador de Posts-->
+            <form class="form-inline my-2 my-lg-0" style = "margin-left: 5px"  action = "#" method="GET">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name = "search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar Post</button>
+            </form>
+            <!--Nuevo Post-->
+            
+            {% if user_loged %}
+            <form class="form-inline my-2 my-lg-0" style = "margin-left: 5px" action = "/create-post/" method="POST">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" type="hidden" placeholder="Search" aria-label="Search" name = "email" value = {{user_loged.email}}>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Crear post</button>
+            </form>
+            {% endif %}
+            {% if user_loged %}
+            <!--Mis Post -->
+            <form class="form-inline my-2 my-lg-0" style = "margin-left: 5px" action = "/Gestion_usuarios/show-user-posts/" method="POST">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" type="hidden" placeholder="Search" aria-label="Search" name = "email_user_logged" value = {{user_loged.email}}>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Mis Posts</button>
+            </form>
+            {% endif %}
+            
+            
+        </div>
+    </nav>
+    {% block contenido %}
+    {% endblock %}
+
+</body>

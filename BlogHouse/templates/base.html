@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block titulo %}
+        {% endblock %}
+    </title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"/>
+    
+    <link type = 'text/css' rel="stylesheet" href='{% static "css/styles.css" %}'  />
+    
+        
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar "  style="background: chocolate;">    
+        <a class="fuente-navbar navbar-brand" href="/"><img src="{% static 'imgs/logo_small__.png' %}" alt="" class= "img-logo"></a>
+        <button class="fuente-navbar navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+            
+
+            <ul class="navbar-nav mr-auto" >
+                {% if request.user.is_authenticated %}                                                 
+                <li class="nav-item" >
+                    <a class="fuente-navbar nav-link" href="/users/logout/">Cerrar Sesión</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="fuente-navbar nav-link" href="/users/profile/">{{request.user}}</a>
+                </li>
+                {% else %}
+                <li class="nav-item" >
+                    <a class="fuente-navbar nav-link" href="/users/login/">Iniciar Sesión</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="fuente-navbar nav-link" href="/users/register/">Registrarme</a>
+                </li>
+                              
+                {% endif %}
+                <li class="nav-item" >
+                    <a class="fuente-navbar nav-link" href="/posts/create-post/">Crear Publicación</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="fuente-navbar nav-link" href="/about/">Acerca De Mi</a>
+                </li>   
+                       
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0" action = "/posts/search-post/" method="GET">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name = "search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </div>
+    </nav>
+    {% block contenido %}
+    {% endblock %}
+
+</body>

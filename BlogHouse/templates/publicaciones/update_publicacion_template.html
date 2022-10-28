@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Bloggerhouse | User profile
+{% endblock %}
+
+{% block contenido %}
+
+<div class = 'post-div'>
+    {% if form %}
+        {% if success_message %}
+        <div class="alert alert-success" role="alert">
+           {{success_message}}
+        </div>
+        {% endif %}
+        {% if form_errors %}
+        <div class="alert alert-danger" role="alert">
+            {{form_errors}}
+        </div>          
+        {% endif %}
+        <div class= "form-container" id = "form-edit-post">   
+        <h1>{{request.user}}</h1>
+        <hr>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}                
+            </table>
+            <input type="submit" value = "Guardar">
+        </form>
+        </div>
+    {% else %}
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{error}}
+        </div>          
+        {% endif %}   
+    {% endif%}
+</div>
+
+{% endblock %}

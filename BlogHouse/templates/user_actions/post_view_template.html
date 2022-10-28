@@ -1,0 +1,14 @@
+{% extends 'user_actions/base_main_user_screen.html' %}
+
+{% block titulo %}
+    Bloggerhouse | New Post
+{% endblock %}
+
+{% block contenido %}
+
+    {% if new_post %}
+        <h3>El post {{new_post.topic}} ha sido creado correctamente</h3>
+        <p>Mostrar listado de posts del usuarios logueado</p>
+    {% endif%}
+
+{% endblock %}

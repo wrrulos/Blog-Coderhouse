@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    BlogHouse | Nuevo post
+{% endblock %}
+
+{% block contenido %}
+
+{% if form %}
+    <h3 class="post-error-message">{{form_errors}}</h3>    
+    <div class = "form-container">
+    <h1>¡Nuevo Post!</h1>
+    <hr>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <input type="submit" value = "¡Publicar!">
+    </form>
+    </div>
+{% elif new_publicacion %}
+    <h1>{{message}}</h1>
+{% else %}
+<h1>{{error}}</h1>
+{% endif %}
+
+
+{% endblock %}

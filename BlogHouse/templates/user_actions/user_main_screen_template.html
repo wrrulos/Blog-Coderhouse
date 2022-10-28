@@ -1,0 +1,15 @@
+{% extends 'user_actions/base_main_user_screen.html' %}
+
+{% block titulo %}
+    BlogHouse | Bienvenido
+{% endblock %}
+
+{% block contenido %}
+
+{% if user_loged %}
+
+    <h2> ¡Bienvenido {{user_loged.alias}}!</h2>
+
+{% endif %}
+
+{% endblock %}

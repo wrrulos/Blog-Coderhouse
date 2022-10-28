@@ -1,0 +1,20 @@
+{% extends 'user_actions/base_main_user_screen.html' %}
+
+{% block titulo %}
+    Bloggerhouse | Delete Posts
+{% endblock %}
+
+{% block contenido %}
+
+{% if post %}
+    <h3>Estas a punto de eliminar el post {{post.topic}}. ¿Deseas continuar?</h3>
+
+    <form action="/Gestion_usuarios/post-delete-view/{{post.id}}/{{post.email_autor}}" method ="POST">
+        {% csrf_token %}
+        <button class="btn btn-danger" type="submit">Eliminar</button>
+    </form>
+{% else %}
+        {{message}}
+{% endif %}
+
+{% endblock %}

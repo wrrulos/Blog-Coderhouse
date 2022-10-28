@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Bloggerhouse | Login
+{% endblock %}
+
+{% block contenido %}
+
+{% load static %}
+<div class = "container-about">
+    <h2>BlogHouse | El Proyecto </h2>
+
+    <p>¿Qué es <b>BlogHouse</b>? Bueno, es el proyecto que cree para la entrega final de <b>CoderHouse</b></p>
+
+    <h2>Un poco de mi</h2>
+    <img src="{% static 'imgs/about-picture__.png' %}" alt="" >   
+
+    </br>
+    </br>
+    <p>Mi nombre es Pedro Agustin Vega (wRRulos), soy un programador argentino y tengo 18 años. Me encanta programar, programo scritps en Python hace más de 2 años, de hecho,
+    varios scripts se hicieron bastante conocidos, uno de ellos es <b>MCPTool</b>. Actualmente estoy pensando en que carrera seguir, tal vez vaya por diseño web
+    y me convierta en desarrollador fullstack o tal vez, vaya por el lado de la ciberseguridad, todavía no lo sé.
+    </p>
+
+    <h2> ¡Gracias!</h2>
+
+    <p>Para terminar, quiero agradecer a mi tutor <b>Rodrigo Robert</b>, siempre estuvo para ayudarme con las pocas dudas o problemas que tuve durante el curso. Imagino que estás leyendo esto, 
+    así que aprovecho para agradecerte personalmente, gracias por bancarme en los inconvenientes que tuve y gracias por los mensajes que me dejabas en la corrección de las entregas. ¡Sos un genio!</p>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Bloggerhouse | Login
+{% endblock %}
+
+{% block contenido %}
+
+{% if form %}
+    
+    {% if errors %}
+    <div class="alert alert-danger" role="alert">
+        {{errors}}
+    </div>
+    {% endif%}    
+    <div class="form-container">
+        <h1>Iniciar Sesión</h1>
+        <hr>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>
+            <input type="submit" value = "Acceder">
+        </form>
+    </div>
+{% elif new_user %}
+{% endif %}
+
+
+{% endblock %}

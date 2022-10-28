@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Bloggerhouse | User profile
+{% endblock %}
+
+{% block contenido %}
+
+<div class = 'profile-div'>
+  
+    {% if form %}
+        {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+          {{error_message}}
+        </div>
+        {% endif %}
+        <div class = "form-container" id = "form-profile">          
+        <h1>{{request.user}}</h1>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}                
+            </table>
+            <input type="submit" value = "Guardar">
+        </form>
+      </div>
+    {% endif%}
+  
+</div>
+
+<div class = 'profile-div'>
+    
+    {% if posts %}                 
+     {% for post in posts %}
+        <div class="card mb-3" style="width: 100%;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{post.main_image.url}}" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{post.title}}</h5>
+                  <p class="card-text">{{post.user}}</p>                  
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  <p class="card-text">                    
+                    <a href="/posts/delete-post/{{post.id}}/" class="btn btn-danger btn-card">Eliminar</a>
+                    <a href="/posts/update-post/{{post.id}}/" class="btn btn-primary btn-card">Editar</a>
+                    <a href="/posts/detail-post/{{post.id}}/" class="btn btn-primary btn-card">¡Ver!</a>
+                  </p>                  
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+     {% else %}
+          <h2>Aún no hay publicaciones</h2>
+     {% endif %}
+</div>
+
+{% endblock %}

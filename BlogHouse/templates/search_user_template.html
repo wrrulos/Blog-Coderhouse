@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Bloggerhouse | Search User
+{% endblock %}
+
+{% block contenido %}
+
+<h1 style="text-align: center;">Busqueda de usuarios</h1>
+<div class="d-flex" style="margin-top:5rem; margin-left:7rem">
+    {% for user in users %}
+
+    <div class="card" style="width: 22rem; margin-right: 2%; border: 2px solid black;">        
+        <div class="card-body">
+            <h5 class="card-title">Email: {{user.email}}</h5>            
+            <p class="card-text">Alias: {{user.alias}}</p>
+            <!--Hay que generar el action-->
+            <form action="/person-data/" method="GET">
+                <input type="hidden" value = {{user.email}} name="email">
+                <button class="btn btn-outlines-success my-2 my-sm-0" style ="background-color: darkgreen; color:white;"type="submit">Datos personales...</button>
+            </form>
+            
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

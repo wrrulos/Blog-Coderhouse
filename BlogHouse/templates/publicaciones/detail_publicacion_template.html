@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Bloggerhouse
+{% endblock %}
+
+{% block contenido %}
+
+    {% if publicacion %}
+    <div class = "post-container">
+        <h2 class="post-title">{{ publicacion.title}}</h2>
+        <img class="img-content" src="{{publicacion.main_image.url}}" alt="" srcset="">
+        <div class = "post-autor"> 
+            <h4>Por {% if autor %} <img class="img-profile-post" src="{{autor.img_profile.url}}" alt="" srcset=""> {% endif %} {{publicacion.user}}</h4>
+        </div>        
+        {{publicacion.content|safe}}
+    </div>
+    {% else %}
+    <div style="width: 80%; margin-left: auto; margin-right: auto; border: 1px solid green"></div>
+        <h3>{{ error }}</h3>
+    </div>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Bloggerhouse
+{% endblock %}
+
+{% block contenido %}
+    
+    {% if post %}
+    <div class = "message-box">
+        <div class="form-container" id = "form-edit-post">
+        <h4>¡Atención!</h4>
+        <hr>
+        <p>Estas por eliminar la publicación <b>"{{post.title}}"</b> ¿Deseas continuar?</p>
+        <form method = "POST">
+            {% csrf_token %}
+            <button class="w-100 btn btn-lg btn-danger" type="submit">Eliminar</button>
+        </form>
+        </div>
+    </div>
+    {% elif error %}
+    <div class = "message-box">
+        <h4>¡Error!</h4>
+        <hr>
+        <p>{{error}}</p>
+    </div>
+    {% else %}
+        {% if success_message %}
+        <div class="alert alert-success" role="alert">
+            {{success_message}}
+        </div>
+        {% endif %}          
+    {% endif%}
+
+{% endblock %}
